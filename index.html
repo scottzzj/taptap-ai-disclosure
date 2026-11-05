@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>《捡宝打怪》AI 使用情况说明</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1b2430; --muted:#5d6b7a;
+    --line:#e4e8ee; --accent:#c2410c; --accent-soft:#fff3ea; --ok:#0f766e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.75; font-size:15.5px;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:40px 20px 72px}
+  header{margin-bottom:26px}
+  h1{font-size:28px; margin:0 0 8px; letter-spacing:.3px}
+  .sub{color:var(--muted); font-size:14px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:18px 0}
+  .answer{background:var(--accent-soft); border-color:#f6d3bb}
+  .answer .label{font-size:13px; color:var(--accent); font-weight:700; letter-spacing:.5px}
+  .answer .text{font-size:16px; font-weight:600; margin-top:8px; word-break:break-all}
+  h2{font-size:19px; margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid var(--line)}
+  table{width:100%; border-collapse:collapse; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#fafbfc; font-weight:600; color:var(--muted); white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  .yes{color:var(--accent); font-weight:600}
+  .no{color:var(--ok); font-weight:600}
+  ul{margin:0; padding-left:20px}
+  li{margin:6px 0}
+  code{background:#f1f3f6; border-radius:5px; padding:1px 6px; font-size:13px;
+       font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  a{color:#1d4ed8; text-decoration:none}
+  a:hover{text-decoration:underline}
+  footer{color:var(--muted); font-size:13px; text-align:center; margin-top:34px}
+  @media (max-width:600px){
+    .wrap{padding:24px 14px 56px}
+    h1{font-size:23px}
+    table{font-size:13.5px}
+    th,td{padding:8px 8px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>《捡宝打怪》AI 使用情况说明</h1>
+    <div class="sub">TapTap 创意工坊上架资料 · 「是否使用 AI 生成内容」附页 · v1.0 · 2026-11-05</div>
+  </header>
+
+  <section class="card answer">
+    <div class="label">可直接填写到表单</div>
+    <div class="text">使用了 AI，用于美术 / 文案 / 代码 / 音效部分，说明文档：https://scottzzj.github.io/taptap-ai-disclosure/</div>
+  </section>
+
+  <section class="card">
+    <h2>一、项目信息</h2>
+    <table>
+      <tr><th>游戏名称</th><td>捡宝打怪</td></tr>
+      <tr><th>平台</th><td>TapTap 创意工坊（TapTap 制造 / Maker）</td></tr>
+      <tr><th>App ID</th><td>1015182</td></tr>
+      <tr><th>开发者 ID</th><td>509154</td></tr>
+      <tr><th>类型</th><td>横屏俯视肉鸽生存 · 单机 · 无内购</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>二、AI 使用范围明细</h2>
+    <table>
+      <tr>
+        <th>环节</th><th>是否 AI</th><th>具体用法</th><th>人工处理</th>
+      </tr>
+      <tr>
+        <td>代码</td><td class="yes">是</td>
+        <td>全部 Lua 游戏逻辑（13 个文件、约 9500 行）由 AI 编程助手编写与重构：战斗循环、武器系统、关卡、UI、存档、音频播放、自动化测试</td>
+        <td>需求定义、玩法取舍、逐版验收、真机测试与线上问题定位</td>
+      </tr>
+      <tr>
+        <td>美术（角色 / 封面）</td><td class="yes">是</td>
+        <td>Boss 与敌人立绘、主菜单封面立绘、图标底图由 AI 图像生成</td>
+        <td>裁切、去水印、调色、尺寸与安全区适配、风格统一筛选</td>
+      </tr>
+      <tr>
+        <td>美术（界面）</td><td class="no">否</td>
+        <td>游戏内全部 UI（面板、按钮、血条、图标图形）由代码矢量绘制（NanoVG）</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>文案</td><td class="yes">是</td>
+        <td>游戏简介、副标题、开发者的话、更新说明、玩法提示由 AI 起草</td>
+        <td>人工改写与事实校对</td>
+      </tr>
+      <tr>
+        <td>音效 / 音乐</td><td class="yes">是</td>
+        <td>背景音乐由 AI 编写的合成脚本（Python，纯算法合成）生成：鼓组、贝斯、琶音、侧链压缩，30 秒无缝循环。未使用第三方采样库或 AI 音乐服务</td>
+        <td>试听筛选、循环接缝校验、播放链路验证</td>
+      </tr>
+      <tr>
+        <td>关卡数值</td><td class="yes">是</td>
+        <td>数值曲线与平衡初版由 AI 起草</td>
+        <td>按试玩手感人工调整</td>
+      </tr>
+      <tr>
+        <td>实机演示视频</td><td class="no">否</td>
+        <td>真机录屏，无 AI 合成、无 AI 配音</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>真人配音</td><td class="no">否</td>
+        <td>游戏无配音</td>
+        <td>—</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>三、生成方式与可追溯性</h2>
+    <ul>
+      <li><strong>代码与文案</strong>：AI 编程助手（WorkBuddy）在本地项目中生成，全部变更进入 Git 版本库，可按提交逐条追溯。</li>
+      <li><strong>图像</strong>：使用 TapTap 制造内置图像生成与 WorkBuddy 图像生成能力出图，成品存放在项目 <code>assets/image/</code>，配套 <code>.meta</code> 资源元数据。</li>
+      <li><strong>音频</strong>：生成脚本 <code>tools/gen_bgm_battle.py</code>（纯 Python 标准库）可复现同一音轨；成品为 <code>assets/audio/courtyard-loop.ogg</code>（主）与同名 <code>.wav</code>（兜底）。</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>四、未使用 AI 的部分（澄清）</h2>
+    <ul>
+      <li>游戏截图：全部来自真实运行画面渲染，未使用 AI 生成或 AI 修图。</li>
+      <li>实机演示视频：真机录屏。</li>
+      <li>商店物料中的文字排版：人工完成。</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>五、内容合规与责任声明</h2>
+    <ul>
+      <li>AI 仅作为生产工具使用；游戏的设计决策、内容取舍与最终质量由开发者负责。</li>
+      <li>已对全部 AI 生成内容做人工审核：无侵权素材、无真实人物肖像、无违禁与不良信息。</li>
+      <li>图像生成未使用他人作品作为风格仿制对象；如发现任何权利瑕疵，将立即替换并更新本文档。</li>
+      <li>本文档内容与游戏实际提交版本一致；若新增 AI 使用场景，会在上架前更新本页。</li>
+    </ul>
+  </section>
+
+  <footer>
+    开发者 GitHub：<a href="https://github.com/scottzzj">github.com/scottzzj</a> · 文档版本 v1.0
+  </footer>
+</div>
+</body>
+</html>
